@@ -32,6 +32,8 @@ function removeUser(){
   sessionStorage.removeItem("UserId");
   sessionStorage.removeItem("RoleId");
    sessionStorage.removeItem("IsLoggedIn");
+   sessionStorage.removeItem("Name");
+   sessionStorage.removeItem("LastName");
 
 }
 if(isLoggedIn&&rrid==2)
