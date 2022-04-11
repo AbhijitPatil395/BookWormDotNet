@@ -64,7 +64,7 @@ function Signup() {
         .test('Unique Email', 'User with this Email Exists', // <- key, message
           function (value) {
             return new Promise((resolve, reject) => {
-              fetch(`http://localhost:8080/user/checkuseremail/${value}`)
+              fetch(`https://localhost:44385/api/user_master/GetEmail/${value}`)
                 .then(res => res.json())
                 .then((result) => {
                   if (result === "The Email has already been taken.") {
@@ -90,7 +90,7 @@ function Signup() {
         .required("please enter your 10 digit mobile number"),
     }),
     onSubmit: values => {
-      var url = 'http://localhost:8080/crud/addUser'
+      var url = 'https://localhost:44385/api/user_master/'
       const requestOptions =
       {
         method: 'POST',

@@ -27,65 +27,80 @@ function Login() {
 
   
 
-  const HandleSubmit=event=>
+  const HandleSubmit=(event)=>
   {
     
             var url;
             if (user.role_id == 1)
             {
-            url = "https://localhost:44378/api/user_master";
-            console.log(url)
-            event.preventDefault();
-            fetch(url+user.user_name)
-          .then(res=>res.json())
-          .then((result)=>{
-            setCustomer(result)
-            console.log(result)
-            if(user.user_name == result.user_name && result.password == user.password)
+              url = "https://localhost:44385/api/user_master/PostLogin"
+              const requestOptions =
+              {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(user)
+              };
+              event.preventDefault();
+              fetch(url, requestOptions)
+              .then(res=>res.json())
+              .then((result)=>{
+                setCustomer(result)
+                if(result)
+                {
+              sessionStorage.setItem("Name", result[0].first_name);
+              sessionStorage.setItem("LastName",  result[0].last_name);
+              sessionStorage.setItem("UserId",  result[0].user_id);
+              sessionStorage.setItem("RoleId",  result[0].role_id);
+              sessionStorage.setItem("IsLoggedIn",true);
+              
+              navigate("/");
+              
+                }
+              else
+              {
+                console.log("hhhhhh");
+                navigate("/Login")
+              }
+            })
+            .catch(error => console.log('Form submit error: ', error));
+          }
+          if (user.role_id == 2)
             {
-              sessionStorage.setItem("Name", result.first_name);
-              sessionStorage.setItem("LastName", result.last_name);
-              sessionStorage.setItem("UserId", result.user_id);
-              sessionStorage.setItem("RoleId", result.role_id);
-              sessionStorage.setItem("IsLoggedIn",true)
-              navigate("/",result)
-            }
-            else
-            { 
-              console.log("hhhhhh");
-              navigate("/Login")
-            }
-          })
-          .catch(error => console.log('Form submit error: ', error));
-            }
-            if (user.role_id == 2)
-            {
-              url = "http://localhost:8080/crud/benificiarysearch/";
-              console.log(url)
-            event.preventDefault();
-            fetch(url+user.ben_user_name)
-          .then(res=>res.json())
-          .then((result)=>{
-            setCustomer(result)
-            console.log(result)
-            if(user.ben_user_name == result.benUserName && result.benPassword == user.ben_password)
-            {
-              sessionStorage.setItem("Name", result.benName);
-              sessionStorage.setItem("UserId", result.benId);
-              sessionStorage.setItem("RoleId", 2);
-              sessionStorage.setItem("IsLoggedIn",true)
-              alert("You have successfully logged in !!!!")
-              navigate("/",result)
-            }
-            else
-            { 
-              console.log("hhhhhh");
-              navigate("/")
-            }
-          })
-          .catch(error => console.log('Form submit error: ', error));
+              url = "https://localhost:44385/api/publishers/PostLogin";
+              const requestOptions =
+              {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(user)
+              };
+              event.preventDefault();
+              fetch(url, requestOptions)
+              .then(res=>res.json())
+              .then((result)=>{
+                setCustomer(result)
+                if(result)
+                {
+              sessionStorage.setItem("Name", result[1].Ben_name);
+              sessionStorage.setItem("UserId",  result[1].Ben_user_name);
+              sessionStorage.setItem("RoleId",  2);
+              sessionStorage.setItem("IsLoggedIn",true);
+              
+              navigate("/");
+              
+                }
+              else
+              {
+                console.log("hhhhhh");
+                navigate("/Login")
+              }
+            })
+            .catch(error => console.log('Form submit error: ', error));
             }
            
+
+          
+
+            
              
 
   }
@@ -122,8 +137,7 @@ function Login() {
 <ChangeButton isClicked={usertype} handleChange={handleChange}/>
      </form>
       <div className="hint-text">Dont have an account? <a href="/Signup">Signup Now</a></div>
-      Customer: {customer.user_name}
-      Customer: {customer.user_name}
+      Customer: {sessionStorage.getItem("Name")}
     </div>
 
   );
@@ -160,11 +174,11 @@ else {
         <p>Please login here!</p>
 
         <div className="form-group">
-          <input type="text" className="form-control" name="ben_user_name" placeholder="User ID" required="required"
+          <input type="text" className="form-control" name="Ben_user_name" placeholder="User ID" required="required"
             onChange={handleChange} />
         </div>
         <div className="form-group">
-          <input type="password" className="form-control" name="ben_password" placeholder="Password"
+          <input type="password" className="form-control" name="Ben_password" placeholder="Password"
             required="required" onChange={handleChange} />
         </div>
         <div className="form-group">
