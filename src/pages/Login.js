@@ -33,7 +33,7 @@ function Login() {
             var url;
             if (user.role_id == 1)
             {
-            url = "http://localhost:8080/crud/getUser/";
+            url = "https://localhost:44378/api/user_master";
             console.log(url)
             event.preventDefault();
             fetch(url+user.user_name)

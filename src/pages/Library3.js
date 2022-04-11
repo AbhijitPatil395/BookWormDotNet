@@ -18,13 +18,13 @@ function Library()
 
     useEffect(() => {
 
-        fetch("http://localhost:8080/crud/products")
+        fetch("https://localhost:44378/api/products")
             .then(res => res.json())
             .then((result) => { setData(result); setFilteredData(result); setFilteredData2(result); });
-        fetch("http://localhost:8080/language/get")
+        fetch("https://localhost:44378/api/languages")
             .then(res => res.json())
             .then((result) =>{setLang(result)});
-        fetch("http://localhost:8080/genere/get")
+        fetch("https://localhost:44378/api/generes")
             .then(res => res.json())
             .then((result) =>{setGenere(result)});
     }, [])
@@ -42,7 +42,7 @@ function Library()
         else{
             
             setTran('p')
-            fetch("http://localhost:8080/crud/products")
+            fetch("https://localhost:44378/api/products")
             .then(res => res.json())
             .then((result) => { setData(result); setFilteredData(result); setFilteredData2(result); });
             
@@ -159,7 +159,7 @@ function Library()
     const searchBook = (event) => {
         if(event.target.value=='')
         {
-            fetch("http://localhost:8080/crud/products")
+            fetch("https://localhost:44378/api/products")
             .then(res => res.json())
             .then((result) => { 
                 setData(result); 
@@ -214,7 +214,7 @@ function Library()
                                 <option value={0}>Select Language</option>
                                 {console.log(lang)}
                                 {lang.map(elem=>{
-                                    return<option value={elem.langId}>{elem.langDesc}</option>
+                                    return<option value={elem.lang_id}>{elem.lang_desc}</option>
                                 })}
                             </select>                           
                         </Row>
@@ -224,7 +224,7 @@ function Library()
                                 <option value={0}>Select Genere</option>
                                 {console.log(genere)}
                                 {genere.map(elem=>{
-                                    return<option value={elem.genereId}>{elem.genereDesc}</option>
+                                    return<option value={elem.genere_id}>{elem.genere_desc}</option>
                                 })}
                             </select> 
                         </Row>
@@ -266,10 +266,10 @@ function Library()
                                         {/* <Card.Img variant="top" src={book.productImage+"/190px280"} /> */}
                                         {/* keep image size horizontal 190 px */}
                                         <Card.Body>
-                                        <Card.Title> <img  src={"../images/" + book.productImage} width="170px" height="250px"></img></Card.Title>
+                                        <Card.Title> <img  src={"../images/" + book.product_image} width="170px" height="250px"></img></Card.Title>
 
-                                            <Link to={"/Description/" + book.productId} style={{ textDecorationLine: "none" }}>
-                                                <Card.Title ><b>{book.productName}</b></Card.Title>
+                                            <Link to={"/Description/" + book.product_id} style={{ textDecorationLine: "none" }}>
+                                                <Card.Title ><b>{book.product_name}</b></Card.Title>
                                             </Link>
                                             {tran=='p'?
                                             (<div style={{ paddingLeft: "0px" }} >
