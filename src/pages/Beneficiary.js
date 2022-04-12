@@ -7,11 +7,11 @@ import { NavLink, useParams } from "react-router-dom"
 function Beneficiary(){
 const [benif, setBenif] = useState([])
 const { Id } = useParams()
-let entry={"prodBenProductId":Id};
+let entry={"ProdBen_product_id":Id};
 useEffect(() => 
 {
 
-    fetch("http://localhost:8080/crud/prodBenDetails")
+    fetch("https://localhost:44370/api/product_beneficiary_details/Getproduct_beneficiary_details")
         .then(res => res.json())
         .then((result) => setBenif(result));
 
@@ -20,13 +20,13 @@ useEffect(() =>
 
 const changeHandler=(event)=>{
    
- entry= {...entry,"prodBenBenId":event.target.value}
+ entry= {...entry,"ProdBen_ben_id":event.target.value}
  console.log(entry);
     
 }
 const percentHandler=(event)=>{
    
- entry= {...entry,"prodBenPercentage":event.target.value}
+ entry= {...entry,"ProdBen_percentage":event.target.value}
     
 }
 
@@ -35,7 +35,7 @@ const handleSubmit=()=>{
     console.log("in submit")
     console.log(entry)
  
-    const url = 'http://localhost:8080/crud/addProdBen'
+    const url = 'https://localhost:44370/api/product_ben/Postproduct_ben'
     const requestOptions = 
     {
         method: 'POST',
@@ -63,7 +63,7 @@ return(<><Navigationbar/>
     
     
     {benif.map(elem=>{
-        return<option id={elem.benId} value={elem.benId}  >BenifID:{elem.benId}  {elem.benName}</option>
+        return<option id={elem.Ben_id} value={elem.Ben_id}  >BenifID:{elem.Ben_id}  {elem.Ben_name}</option>
     }
      )} 
     </select>
