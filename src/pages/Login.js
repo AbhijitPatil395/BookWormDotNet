@@ -82,6 +82,7 @@ function Login() {
                 {
               sessionStorage.setItem("Name", result[1].Ben_name);
               sessionStorage.setItem("UserId",  result[1].Ben_user_name);
+              sessionStorage.setItem("BenId",  result[1].Ben_id);
               sessionStorage.setItem("RoleId",  2);
               sessionStorage.setItem("IsLoggedIn",true);
               
