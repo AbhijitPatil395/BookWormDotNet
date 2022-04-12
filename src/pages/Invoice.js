@@ -43,15 +43,15 @@ export function Invoice(props)
     } */
     useEffect(() => 
     {
-        fetch("http://localhost:8080/crud/productsfromInvoiceDetails/"+uid)
+        fetch("https://localhost:44370/api/invoice_detail/Getinvoice_detail/"+uid)
         .then(res => res.json())
         .then((result) => 
         {   setProduct(result);
             console.log("in useEffect")
             console.log(product); 
-            setTot(result[0][2].invoiceAmt);
-            setInvId(result[0][2].invoiceId);
-            setInvDt(result[0][2].invoiceDt);
+            setTot(result[0].invoice.Invoice_amount);
+            setInvId(result[0].invoice.Invoice_Id);
+            setInvDt(result[0].invoice.Invoice_date);
 
         });
 
@@ -96,14 +96,14 @@ export function Invoice(props)
                 <tbody>
                     {product.map(prod => (
 
-                        <tr key={prod[1].productId}>
+                        <tr key={prod.product.product_id}>
                             
-                            <td>{prod[1].productId}</td>
-                            <td>{prod[1].productName}</td>
-                            {(prod[0].tranType=='R')?<td>{prod[0].basePrice}</td>:<td>{prod[1].productSpCost}</td>}
+                            <td>{prod.product.product_id}</td>
+                            <td>{prod.product.product_name}</td>
+                            {(prod.Tran_Type=='R')?<td>{prod.Base_Price}</td>:<td>{prod.Sale_Price}</td>}
                             
-                            <td>{prod[0].discount}%</td>
-                            <td>{prod[0].netPay}</td>
+                            <td>{prod.discount}%</td>
+                            <td>{prod.net_pay}</td>
                             {/* <td>{calDisc(prod[1].productOfferpriceExpirydate,prod[1].productSpCost,prod[1].productOfferprice)}%</td> */}
                            
                             {/* <td>{compDate(prod[1].productOfferpriceExpirydate)?prod[1].productOfferprice:prod[1].productSpCost}</td> */}
