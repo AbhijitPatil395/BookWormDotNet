@@ -24,17 +24,17 @@ function Royalty(props) {
             
     }, []);
     
-
+//hff
     const isRentable=(event)=>
     {
         if(event.target.value==1){
-        fetch("http://localhost:8080/Royalty/getbRoyaltyRent/" +benId )
+        fetch("https://localhost:44370/api/Royalty_Calculation/GetPubRoyaltyByTran/" +benId )
             .then(res => res.json())
             .then((result) => { setPublisherProduct(result); setPProduct(result); }
             );
         }
         else{
-            fetch("http://localhost:8080/Royalty/getbRoyalty/"+benId)
+            fetch("https://localhost:44370/api/Royalty_Calculation/GetPubRoyalty/"+benId)
             .then(res => res.json())
             .then((result) => { setPublisherProduct(result); setPProduct(result);
             console.log(result[0])}

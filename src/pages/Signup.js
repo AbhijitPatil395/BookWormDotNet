@@ -67,6 +67,8 @@ function Signup() {
           function (value) {
             console.log(value)
             return new Promise((resolve, reject) => {
+              if(value)
+              {
               if(value.length>4)
               fetch(`https://localhost:44370/api/user_master/GetEmail/${value.slice(0,-4)}`)
                 .then(res => res.json())
@@ -78,8 +80,9 @@ function Signup() {
                     resolve(true);
                   }
                 })
-               
+              }
             })
+          
           }
 
         )
@@ -134,6 +137,8 @@ function Signup() {
         .test('Unique Email', 'User with this Email Exists', // <- key, message
           function (value) {
             return new Promise((resolve, reject) => {
+              if(value)
+              {
               if(value.length>4)
               fetch(`https://localhost:44370/api/publishers/GetEmail/${value.slice(0,-4)}`)
                 .then(res => res.json())
@@ -145,7 +150,9 @@ function Signup() {
                     resolve(true);
                   }
                 })
+              }
             })
+          
           }
 
         )
