@@ -5,6 +5,7 @@ import { Link,useNavigate } from "react-router-dom";
 import Navigationbar from './Navigationbar';
 export default function Cart(props){
     const uid=sessionStorage.getItem("UserId");
+    // const uid=1;
     const [delcount,setDelcount]=useState(0);
     const [cartItems,setCartItems]=useState([]);
     const [selectCount,setSelectCount]=useState(0);
@@ -20,7 +21,7 @@ export default function Cart(props){
         .then((result) =>  {setCartItems(result);
             
         } );
-        fetch("https://localhost:44370/api/carts/Gettotalam/"+uid)
+        fetch("https://localhost:44370/api/carts/Gettotalamt/"+uid)
         .then(res=>res.json())
         .then((result)=>{setTotal(result);
         console.log(total);
