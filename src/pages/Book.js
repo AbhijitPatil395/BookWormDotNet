@@ -13,12 +13,16 @@ export default function Book({ d }) {
             <Row>
                 {d.map(book => (
 
-                    <Col xs={2} style={{ paddingBottom: "10px" }}>
+            <Col xs={2} style={{ paddingBottom: "10px" }} >
                         <Card >
                             {/* <Card.Img variant="top" src={book.productImage+"/190px280"} /> */}
-                            <img src={"../images/" + book.product.product_image} width="170px" height="250px"></img>
+                            {/* <img src={"../images/" + book.product.product_image} width="170px" height="250px"></img> */}
                             {/* keep image size horizontal 190 px */}
                             <Card.Body>
+                            <Card.Title>
+                                
+                            <img src={"../images/" + book.product.product_image} width="170px" height="250px"></img>
+                            </Card.Title>
                                 <a href={"../images/" + book.product.product_pdf}>
                                     <Card.Title><b>{book.product.product_name}</b></Card.Title>
                                 </a>

@@ -7,6 +7,7 @@ import Navigationbar from './Navigationbar';
 export default function Shelf() {
 
   const uid=sessionStorage.getItem("UserId");
+  // const uid=1;
   const [data, setData] = useState([]);
   const [fdata, setFdata] = useState([]);
  
