@@ -15,12 +15,12 @@ export default function Cart(props){
     
     useEffect(()=>
     {
-        fetch("http://localhost:8080/crud/productsfromcart/"+uid)
+        fetch("https://localhost:44370/api/carts/Getcart/"+uid)
         .then(res => res.json())
         .then((result) =>  {setCartItems(result);
             
         } );
-        fetch("http://localhost:8080/crud/getTotalAmt/"+uid)
+        fetch("https://localhost:44370/api/carts/Gettotalam/"+uid)
         .then(res=>res.json())
         .then((result)=>{setTotal(result);
         console.log(total);
@@ -34,7 +34,7 @@ export default function Cart(props){
 
     const removeHandler=(cid)=>{
         ;
-        const url="http://localhost:8080/crud/removeFromCart/"+cid;
+        const url="https://localhost:44370/api/carts/Deletecart/"+cid;
         fetch(url,{method:"Delete"})
         .then(response => setDelcount(delcount+1))
         .catch(error => console.log('Form submit error: ', error))
@@ -48,13 +48,13 @@ export default function Cart(props){
         const checked = e.target.checked;
         if (checked) {
             console.log('inside if');
-            let temp=cartItems.find((item)=>item[0].cartId==e.target.value);
-            temp[0].isSelected='y';
+            let temp=cartItems.find((item)=>item.Cart_id==e.target.value);
+            temp.is_selected='y';
             console.log(cartItems);
             }
         else {
-            let temp= cartItems.find(item=>item[0].cartId==e.target.value);
-            temp[0].isSelected='n';
+            let temp= cartItems.find(item=>item.Cart_id==e.target.value);
+            temp.is_selected='n';
             console.log(cartItems);
             
            
@@ -66,11 +66,11 @@ export default function Cart(props){
         const submitHandler=()=>
         {
             console.log('inside submit handler')
-            let user=cartItems.map((item)=>item[0]);
+            let user=cartItems.map((item)=>item);
             
             console.log('inside submit handler');
             console.log(user);
-            const url = 'http://localhost:8080/crud/addSelected'
+            const url = 'https://localhost:44370/api/carts/Addselected'
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -122,18 +122,18 @@ export default function Cart(props){
                     {
                         cartItems.map(book=>
                             ( 
-                                <tr key={book[0].cartId}>
+                                <tr key={book.Cart_id}>
 
                                 <td><div className="form-check">
-                                    <input type="checkbox" className="form-check-input mx-auto" id="check1" name="option1" value={book[0].cartId} 
-                                    onChange={(event)=>checkHandler(event)} defaultChecked={book[0].isSelected.toLowerCase()==='y'}/>
+                                    <input type="checkbox" className="form-check-input mx-auto" id="check1" name="option1" value={book.Cart_id} 
+                                    onChange={(event)=>checkHandler(event)} defaultChecked={book.is_selected.toLowerCase()==='y'}/>
                                         {/* <label class="form-check-label" for="check1">Option 1</label> */}
                                 </div></td>
-                                    <td>{book[1].productName}</td>
-                                    <td>{book[1].productBaseprice}</td>
-                                    <td>{book[1].productSpCost}</td>
-                                    <td>{book[1].productOfferprice}</td>
-                                    <td><Button variant="danger" onClick={()=>{removeHandler(book[0].cartId)}}>Remove</Button></td>
+                                    <td>{book.product.product_baseprice}</td>
+                                    <td>{book.product.product_name}</td>
+                                    <td>{book.product.product_sp_cost}</td>
+                                    <td>{book.product.product_offerprice}</td>
+                                    <td><Button variant="danger" onClick={()=>{removeHandler(book.Cart_id)}}>Remove</Button></td>
                                 </tr>
                             )
 

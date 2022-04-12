@@ -16,7 +16,7 @@ export default function Shelf() {
 
   
     
-    const url='http://localhost:8080/crud/shelf/'+uid;
+    const url='https://localhost:44370/api/myshelves/Getmyshelf/'+uid;
   
     // fetch('./trial2.json')
     fetch(url)
@@ -44,12 +44,12 @@ var date_diff_indays = function(date1, date2) {
     {
       console.log('inside');
       if (mode==='purchase') {
-        setFdata(data.filter((elem)=>elem[0].tranType==="p"));}
+        setFdata(data.filter((elem)=>elem.tran_type==="p"));}
       else if (mode==='rent') {
-        setFdata(data.filter((elem)=>elem[0].tranType==="r"));
+        setFdata(data.filter((elem)=>elem.tran_type==="r"));
       }
       else{
-        setFdata(data.filter((elem)=>elem[0].tranType==="l"));
+        setFdata(data.filter((elem)=>elem.tran_type==="l"));
       }
 
     }
