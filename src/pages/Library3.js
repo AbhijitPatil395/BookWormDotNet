@@ -18,13 +18,13 @@ function Library()
 
     useEffect(() => {
 
-        fetch("https://localhost:44378/api/products/Getproducts")
+        fetch("https://localhost:44370/api/products/Getproducts")
             .then(res => res.json())
             .then((result) => { setData(result); setFilteredData(result); setFilteredData2(result); });
-        fetch("https://localhost:44378/api/languages/Getlanguages")
+        fetch("https://localhost:44370/api/languages/Getlanguages")
             .then(res => res.json())
             .then((result) =>{setLang(result)});
-        fetch("https://localhost:44378/api/generes/Getgeneres")
+        fetch("https://localhost:44370/api/generes/Getgeneres")
             .then(res => res.json())
             .then((result) =>{setGenere(result)});
     }, [])
@@ -34,7 +34,7 @@ function Library()
         if (event.target.checked){
            
             setTran('r');
-            fetch("https://localhost:44378/api/products/GetproductRentable")
+            fetch("https://localhost:44370/api/products/GetproductRentable")
             .then(res => res.json())
             .then((result) => { setData(result); setFilteredData(result); setFilteredData2(result); });
            
@@ -42,7 +42,7 @@ function Library()
         else{
             
             setTran('p')
-            fetch("https://localhost:44378/api/products/Getproducts")
+            fetch("https://localhost:44370/api/products/Getproducts")
             .then(res => res.json())
             .then((result) => { setData(result); setFilteredData(result); setFilteredData2(result); });
             
@@ -135,8 +135,8 @@ function Library()
     {
         if(isLoggedIn)
         {
-            const cart = { 'productId': id, 'userId': UserId, 'isSelected': 'Y' }
-            const url = "http://localhost:8080/crud/addtocart"
+            const cart = { 'Product_id': id, 'user_id': UserId, 'is_selected': 'Y' }
+            const url = "https://localhost:44370/api/carts/Postcart"
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -159,7 +159,7 @@ function Library()
     const searchBook = (event) => {
         if(event.target.value=='')
         {
-            fetch("https://localhost:44378/api/products/Getproducts")
+            fetch("https://localhost:44370/api/products/Getproducts")
             .then(res => res.json())
             .then((result) => { 
                 setData(result); 
@@ -169,7 +169,7 @@ function Library()
         }
         else
         {
-            fetch("https://localhost:44378/api/products/GetproductByName/"+event.target.value)
+            fetch("https://localhost:44370/api/products/GetproductByName/"+event.target.value)
             .then(res => res.json())
             .then((result) =>
              {
