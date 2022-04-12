@@ -45,7 +45,7 @@ function Signup() {
           function (value) {
             console.log(value)
             return new Promise((resolve, reject) => {
-              fetch(`https://localhost:44385/api/user_master/GetUserName/${value}`)
+              fetch(`https://localhost:44370/api/user_master/GetUserName/${value}`)
                 .then(res => res.json())
                 .then((result) => {
                   if (result === "The Username has already been taken.") {
@@ -68,7 +68,7 @@ function Signup() {
             console.log(value)
             return new Promise((resolve, reject) => {
               if(value.length>4)
-              fetch(`https://localhost:44385/api/user_master/GetEmail/${value.slice(0,-4)}`)
+              fetch(`https://localhost:44370/api/user_master/GetEmail/${value.slice(0,-4)}`)
                 .then(res => res.json())
                 .then((result) => {
                   if (result === "The Email has already been taken.") {
@@ -95,7 +95,7 @@ function Signup() {
         .required("please enter your 10 digit mobile number"),
     }),
     onSubmit: values => {
-      var url = 'https://localhost:44385/api/user_master/PostNewUser'
+      var url = 'https://localhost:44370/api/user_master/PostNewUser'
       const requestOptions =
       {
         method: 'POST',
@@ -135,7 +135,7 @@ function Signup() {
           function (value) {
             return new Promise((resolve, reject) => {
               if(value.length>4)
-              fetch(`https://localhost:44385/api/publishers/GetEmail/${value.slice(0,-4)}`)
+              fetch(`https://localhost:44370/api/publishers/GetEmail/${value.slice(0,-4)}`)
                 .then(res => res.json())
                 .then((result) => {
                   if (result === "The Email has already been taken.") {
@@ -173,7 +173,7 @@ function Signup() {
         .test('Unique Name', 'User Name Already Taken', // <- key, message
           function (value) {
             return new Promise((resolve, reject) => {
-              fetch(`https://localhost:44385/api/publishers/GetUserName/${value}`)
+              fetch(`https://localhost:44370/api/publishers/GetUserName/${value}`)
                 .then(res => res.json())
                 .then((result) => {
                   if (result === "The username has already been taken.") {
@@ -195,7 +195,7 @@ function Signup() {
 
     }),
     onSubmit: values => {
-      var url = 'https://localhost:44385/api/publishers/PostNewUser'
+      var url = 'https://localhost:44370/api/publishers/PostNewUser'
       const requestOptions =
       {
         method: 'POST',

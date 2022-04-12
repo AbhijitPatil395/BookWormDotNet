@@ -16,7 +16,7 @@ function Royalty(props) {
     const { Id } = useParams()
     const benId=sessionStorage.getItem("BenId");
     useEffect(() => {
-        fetch("https://localhost:44385/api/Royalty_Calculation/GetPubRoyalty/"+benId)
+        fetch("https://localhost:44370/api/Royalty_Calculation/GetPubRoyalty/"+benId)
             .then(res => res.json())
             .then((result) => { setPublisherProduct(result); setPProduct(result);
             console.log(result[0])}

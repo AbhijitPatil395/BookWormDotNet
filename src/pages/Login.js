@@ -33,7 +33,7 @@ function Login() {
             var url;
             if (user.role_id == 1)
             {
-              url = "https://localhost:44385/api/user_master/PostLogin"
+              url = "https://localhost:44370/api/user_master/PostLogin"
               const requestOptions =
               {
                 method: 'POST',
@@ -66,7 +66,7 @@ function Login() {
           }
           if (user.role_id == 2)
             {
-              url = "https://localhost:44385/api/publishers/PostLogin";
+              url = "https://localhost:44370/api/publishers/PostLogin";
               const requestOptions =
               {
                 method: 'POST',
