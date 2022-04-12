@@ -26,23 +26,23 @@ export function Payment (props)
       console.log("in rent area")
       setTotal(rentAmt)
       setInvoice({
-        invoiceDt:Date.now(),
-        custId:uid,
-        invoiceAmt:rentAmt,
-        tranType:"R"})
+        Invoice_date:Date.now().toString(),
+        cust_id:uid,
+        Invoice_amount:rentAmt,
+        tran_type:"R"})
     }
     else
     {
       console.log("in buy  area")
-      fetch("http://localhost:8080/crud/getTotalAmt/"+uid)
+      fetch("https://localhost:44370/api/carts/Gettotalamt/"+uid)
       .then(res => res.json())
       .then((result) => { setTotal(result);
       console.log(result) 
       setInvoice({
-        invoiceDt:Date.now(),
-        custId:uid,
-        invoiceAmt:result,
-        tranType:"P"})
+        Invoice_date:new Date(Date.now()).toUTCString(),
+        cust_id:uid,
+        Invoice_amount:result,
+        tran_type:"P"})
       })
     }
     
@@ -72,7 +72,7 @@ export function Payment (props)
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(invoice)
     };
-    fetch("http://localhost:8080/crud/addInvoice", requestOptions)
+    fetch("https://localhost:44370/api/invoices/Postinvoice", requestOptions)
         .then(response => {console.log('Invoice successfully');
         //alert("You have been registered Successfully")
         setPayStatus(true)
