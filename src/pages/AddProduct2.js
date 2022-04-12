@@ -17,10 +17,10 @@ export function AddProduct2() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8080/language/get")
+    fetch("https://localhost:44370/api/languages/Getlanguages")
       .then(res => res.json())
       .then((result) => { setLang(result) });
-    fetch("http://localhost:8080/genere/get")
+    fetch("https://localhost:44370/api/generes/Getgeneres")
       .then(res => res.json())
       .then((result) => { setGenere(result) });
   }, [])
@@ -28,7 +28,7 @@ export function AddProduct2() {
     const name = event.target.name;
     const value = event.target.value;
     setProduct(values => ({ ...values, [name]: value }))
-    if (event.target.name == "isRentable") {
+    if (event.target.name == "is_rentable") {
       if (event.target.checked)
         setProduct(values => ({ ...values, [name]: true }))
       else
@@ -87,237 +87,237 @@ export function AddProduct2() {
 
   };
 
-  return (<><Navigationbar />
+  return (
+    <><Navigationbar />
+    <div className="signup-form2">
+    <form className="form-horizontal" onSubmit={handleSubmit}>
+      <legend>ADD PRODUCT DETAILS</legend><br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT NAME</label>  </div>
+        <div className="col">
+          <input id="product_name" onChange={handleChange} name="product_name" placeholder="PRODUCT NAME" className="form-control input-md" required="" type="text" />
 
-    <div class="signup-form2">
-      <form className="form-horizontal" onSubmit={handleSubmit}>
-        <legend>ADD PRODUCT DETAILS</legend><br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT NAME</label>  </div>
-          <div className="col">
-            <input id="product_name" onChange={handleChange} name="productName" placeholder="PRODUCT NAME" className="form-control input-md" required="" type="text" />
 
-
-          </div>
         </div>
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT ENGLISH NAME</label>  </div>
-          <div className="col">
-            <input id="english" onChange={handleChange} name="productEnglishName" placeholder="PRODUCT ENGLISH NAME" className="form-control input-md" required="" type="text" />
+      </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT ENGLISH NAME</label>  </div>
+        <div className="col">
+          <input id="english" onChange={handleChange} name="product_english_name" placeholder="PRODUCT ENGLISH NAME" className="form-control input-md" required="" type="text" />
 
-          </div>
         </div>
+      </div>
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT TYPE</label></div>
-          <div className="col">
-            <select id="productType" onChange={handleChange} name="productType" className="form-control">
-              <option>Select Product type</option>
-              <option id='1' value={1}>E-Book</option>
-              <option id='2' value={2}>Audio-Book</option>
-            </select>
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT TYPE</label></div>
+        <div className="col">
+          <select id="productType" onChange={handleChange} name="product_type" className="form-control">
+            <option>Select Product type</option>
+            <option id='1' value={1}>E-Book</option>
+            <option id='2' value={2}>Audio-Book</option>
+          </select>
         </div>
+      </div>
 
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT BASE PRICE</label>  </div>
-          <div className="col">
-            <input id="gyg" onChange={handleChange} name="productBaseprice" placeholder="PRODUCT BASE PRICE" className="form-control input-md" required="" type="text" />
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT BASE PRICE</label>  </div>
+        <div className="col">
+          <input id="gyg" onChange={handleChange} name="product_baseprice" placeholder="PRODUCT BASE PRICE" className="form-control input-md" required="" type="text" />
 
-          </div>
         </div>
+      </div>
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT SELLING PRICE</label> </div>
-          <div className="col">
-            <input id="oioi" onChange={handleChange} name="productSpCost" placeholder="PRODUCT SP" className="form-control input-md" required="" type="text" />
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT SELLING PRICE</label> </div>
+        <div className="col">
+          <input id="oioi" onChange={handleChange} name="product_sp_cost" placeholder="PRODUCT SP" className="form-control input-md" required="" type="text" />
         </div>
+      </div>
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label">PRODUCT OFFER PRICE</label>  </div>
-          <div className="col">
-            <input id="product_offerprice" onChange={handleChange} name="productOfferprice" placeholder="PRODUCT Offer Price" className="form-control input-md" required="" type="text" />
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label">PRODUCT OFFER PRICE</label>  </div>
+        <div className="col">
+          <input id="product_offerprice" onChange={handleChange} name="product_offerprice" placeholder="PRODUCT Offer Price" className="form-control input-md" required="" type="text" />
         </div>
+      </div>
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT OFFER EXPIRY</label>  </div>
-          <div className="col">
-            <input id="product_offerprice_expiry" onChange={handleChange} name="productOfferpriceExpirydate" className="form-control input-md" required="" type="date" />
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT OFFER EXPIRY</label>  </div>
+        <div className="col">
+          <input id="product_offerprice_expiry" onChange={handleChange} name="product_offerprice_expirydate" className="form-control input-md" required="" type="date" />
         </div>
+      </div>
 
-        {/* <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label">PRODUCT DESCRIPTION SHORT</label></div>
-          <div className="col">
-            <textarea className="form-control" onChange={handleChange} id="productDescShort" name="productDescShort"></textarea>
-          </div>
+      {/* <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label">PRODUCT DESCRIPTION SHORT</label></div>
+        <div className="col">
+          <textarea className="form-control" onChange={handleChange} id="productDescShort" name="productDescShort"></textarea>
         </div>
+      </div>
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT DESCRIPTION LONG</label></div>
-          <div className="col">
-            <textarea className="form-control" onChange={handleChange} id="productDescLong" name="productDescLong"></textarea>
-          </div>
-        </div> */}
-
-
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT ISBN</label>  </div>
-          <div className="col">
-            <input id="product_isbn" onChange={handleChange} name="productIsbn" placeholder="PRODUCT ISBN" className="form-control input-md" required="" type="text" />
-
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT DESCRIPTION LONG</label></div>
+        <div className="col">
+          <textarea className="form-control" onChange={handleChange} id="productDescLong" name="productDescLong"></textarea>
         </div>
+      </div> */}
 
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT AUTHOR ID</label>  </div>
-          <div className="col">
-            <input id="stock_alert" onChange={handleChange} name="productAuthorId" placeholder="product_author_id" className="form-control input-md" required="" type="text" />
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT ISBN</label>  </div>
+        <div className="col">
+          <input id="product_isbn" onChange={handleChange} name="product_isbn" placeholder="PRODUCT ISBN" className="form-control input-md" required="" type="text" />
 
-          </div>
         </div>
+      </div>
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT LANGUAGE</label></div>
-          <div className="col">
-            <select id="product_language" onChange={handleChange} name="productLanguage" className="form-control">
-              <option>Select Language</option>
-              {console.log(lang)}
-              {lang.map(elem => {
-                return <option value={elem.langId}>{elem.langDesc}</option>
-              })}
-            </select>
-          </div>
+
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT AUTHOR ID</label>  </div>
+        <div className="col">
+          <input id="stock_alert" onChange={handleChange} name="product_author_id" placeholder="product_author_id" className="form-control input-md" required="" type="text" />
+
         </div>
+      </div>
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT GENRE</label></div>
-          <div className="col">
-            <select id="product_genre" onChange={handleChange} name="productGenere" className="form-control">
-              <option>Select Genere</option>
-              {console.log(genere)}
-              {genere.map(elem => {
-                return <option value={elem.genereId}>{elem.genereDesc}</option>
-              })}
-            </select>
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT LANGUAGE</label></div>
+        <div className="col">
+          <select id="product_language" onChange={handleChange} name="product_language" className="form-control">
+            <option>Select Language</option>
+            {console.log(lang)}
+            {lang.map(elem => {
+              return <option value={elem.lang_id}>{elem.lang_desc}</option>
+            })}
+          </select>
         </div>
+      </div>
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >Is Rentable</label></div>
-          <div className="col">
-            <input id="is_rent" value={true} onChange={handleChange} name="isRentable" className="input-file" type="checkbox" />
-            &nbsp;&nbsp;&nbsp;Do you want to make this book available for Rent?
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT GENRE</label></div>
+        <div className="col">
+          <select id="product_genre" onChange={handleChange} name="product_genere" className="form-control">
+            <option>Select Genere</option>
+            {console.log(genere)}
+            {genere.map(elem => {
+              return <option value={elem.genere_id}>{elem.genere_desc}</option>
+            })}
+          </select>
         </div>
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT PER DAY PRICE if it is Rentable</label>  </div>
-          <div className="col">
-            <input id="gyg" onChange={handleChange} name="productBasePricePerDay" placeholder="PRODUCT PER DAY PRICE if rentable" className="form-control input-md" required="" type="text" />
+      </div>
 
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >Is Rentable</label></div>
+        <div className="col">
+          <input id="is_rent" value={true} onChange={handleChange} name="is_rentable" className="input-file" type="checkbox" />
+          &nbsp;&nbsp;&nbsp;Do you want to make this book available for Rent?
         </div>
+      </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT PER DAY PRICE if it is Rentable</label>  </div>
+        <div className="col">
+          <input id="gyg" onChange={handleChange} name="product_baseprice_perday" placeholder="PRODUCT PER DAY PRICE if rentable" className="form-control input-md" required="" type="text" />
+
+        </div>
+      </div>
 
 
 
-        {/* <input type="radio" name="yes_no" checked>Yes</input>
+      {/* <input type="radio" name="yes_no" checked>Yes</input>
 <input type="radio" name="yes_no">No</input> */}
-        {/* <div className="form-group">
-  <label className="col-md-4 control-label" for="stock_critical">IS RENTABLE?</label>
-  <div className="col-md-4">
-    <input id="is_rentable" name="is_rentable" type="radio"className="form-control input-md" required=""> YES</input>
-    <input id="is_rentable" name="is_rentable" type="radio" className="form-control input-md" required=""> NO</input>
-  </div>
+      {/* <div className="form-group">
+<label className="col-md-4 control-label" for="stock_critical">IS RENTABLE?</label>
+<div className="col-md-4">
+  <input id="is_rentable" name="is_rentable" type="radio"className="form-control input-md" required=""> YES</input>
+  <input id="is_rentable" name="is_rentable" type="radio" className="form-control input-md" required=""> NO</input>
+</div>
 </div> */}
 
-        {/* <div className="form-group">
-  <label className="col-md-4 control-label" for="stock_critical">IS LIBRARY?</label>
-  <div className="col-md-4">
-    <input id="is_library" name="is_library" type="radio"className="form-control input-md" required=""> YES</input>
-    <input id="is_library" name="is_library" type="radio" className="form-control input-md" required=""> NO</input>
-  </div>
+      {/* <div className="form-group">
+<label className="col-md-4 control-label" for="stock_critical">IS LIBRARY?</label>
+<div className="col-md-4">
+  <input id="is_library" name="is_library" type="radio"className="form-control input-md" required=""> YES</input>
+  <input id="is_library" name="is_library" type="radio" className="form-control input-md" required=""> NO</input>
+</div>
 </div> */}
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label">PRODUCT DESCRIPTION SHORT</label></div>
-          <div className="col">
-            <textarea className="form-control" onChange={handleChange} id="productDescShort" name="productDescShort"></textarea>
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label">PRODUCT DESCRIPTION SHORT</label></div>
+        <div className="col">
+          <textarea className="form-control" onChange={handleChange} id="product_desc_short" name="product_desc_short"></textarea>
         </div>
+      </div>
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT DESCRIPTION LONG</label></div>
-          <div className="col">
-            <textarea className="form-control" onChange={handleChange} id="productDescLong" name="productDescLong"></textarea>
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT DESCRIPTION LONG</label></div>
+        <div className="col">
+          <textarea className="form-control" onChange={handleChange} id="product_desc_long" name="product_desc_long"></textarea>
         </div>
+      </div>
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT IMAGE</label></div>
-          <div className="col"><i>Size Limit 1MB</i>&nbsp;
-            <input id="product_image" onChange={imgHandler} name="productImage" className="input-file" type="file" />
-          </div>
+       <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT IMAGE</label></div>
+        <div className="col"><i>Size Limit 1MB</i>&nbsp;
+          <input id="product_image" onChange={imgHandler} name="product_image" className="input-file" type="file" />
         </div>
+      </div>
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >PRODUCT FILE</label></div>
-          <div className="col"><i>Size Limit 1MB</i>&nbsp;
-            <input id="product_file" onChange={fileHandler} name="productPdf" className="input-file" type="file" />
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >PRODUCT FILE</label></div>
+        <div className="col"><i>Size Limit 1MB</i>&nbsp;
+          <input id="product_file" onChange={fileHandler} name="product_pdf" className="input-file" type="file" />
         </div>
+      </div> 
 
-        <br />
-        <div className="row">
-          <div className="col">
-            <label className="col-md-4 control-label" >SUBMIT NOW</label> </div>
-          <div className="col">
-            <button id="singlebutton" name="singlebutton" className="btn btn-primary">Submit</button><br /><br />
-          </div>
+      <br />
+      <div className="row">
+        <div className="col">
+          <label className="col-md-4 control-label" >SUBMIT NOW</label> </div>
+        <div className="col">
+          <button id="singlebutton" name="singlebutton" className="btn btn-primary">Submit</button><br /><br />
         </div>
-      </form>
-    </div>
-  </>
+      </div>
+    </form>
+  </div></>
+
   )
 }
 export default AddProduct2;
