@@ -26,7 +26,7 @@ export function Payment (props)
       console.log("in rent area")
       setTotal(rentAmt)
       setInvoice({
-        Invoice_date:Date.now().toString(),
+        Invoice_date:new Date(Date.now()).toUTCString(),
         cust_id:uid,
         Invoice_amount:rentAmt,
         tran_type:"R"})

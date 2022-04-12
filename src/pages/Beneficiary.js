@@ -18,8 +18,9 @@ useEffect(() =>
 }, [])
 
 
-const changeHandler=(event)=>{
-   
+const changeHandler=(event)=>
+{
+  
  entry= {...entry,"ProdBen_ben_id":event.target.value}
  console.log(entry);
     

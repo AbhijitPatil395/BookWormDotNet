@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 function PublisherNav(props){
-    const id=sessionStorage.getItem("UserId");
+    const id=sessionStorage.getItem("BenId");
     let {isLoggedIn,rrid,removeUser} = props;
 return(
     <>

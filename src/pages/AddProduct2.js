@@ -5,9 +5,11 @@ import '../PubPro.css';
 import axios from "axios";
 import Navigationbar from './Navigationbar';
 
-export function AddProduct2() {
+export function AddProduct2() 
+{
   let userid = sessionStorage.getItem("UserId")
-  const [product, setProduct] = useState({ productPublisher: userid });
+  let bid = sessionStorage.getItem("BenId")
+  const [product, setProduct] = useState({ product_publisher: bid });
   const [imgfile, setImgFile] = useState();
   const [imgName, setImgFileName] = useState();
   const [pdffile, setPdfFile] = useState();
@@ -24,7 +26,8 @@ export function AddProduct2() {
       .then(res => res.json())
       .then((result) => { setGenere(result) });
   }, [])
-  const handleChange = (event) => {
+  const handleChange = (event) =>
+  {
     const name = event.target.name;
     const value = event.target.value;
     setProduct(values => ({ ...values, [name]: value }))
@@ -38,16 +41,17 @@ export function AddProduct2() {
   }
   const imgHandler = (event) => {
     console.log("inside img handler")
+    
     setImgFile(event.target.files[0])
     setImgFileName(event.target.files[0].name)
-    setProduct({ ...product, productImage: event.target.files[0].name });
+    setProduct({ ...product, product_image: event.target.files[0].name });
 
   }
   const fileHandler = (event) => {
     console.log("inside file handler")
     setPdfFile(event.target.files[0])
     setPdfFileName(event.target.files[0].name)
-    setProduct({ ...product, productPdf: event.target.files[0].name });
+    setProduct({ ...product, product_pdf: event.target.files[0].name });
 
   }
 
@@ -57,18 +61,18 @@ export function AddProduct2() {
 
     //alert("on submit signup " + product.productName);
 
-    console.log(imgfile);
-    const fd = new FormData();
-    fd.append('file', imgfile, imgName);
-    fd.append('file', pdffile, pdfName);
+    // console.log(imgfile);
+    // const fd = new FormData();
+    // fd.append('file', imgfile, imgName);
+    // fd.append('file', pdffile, pdfName);
 
-    //console.log('inside submit handler');
-    console.log(fd);
-    const urlImage = 'http://localhost:8080/upload'
-    axios.post(urlImage, fd).then(res => console.log(res))
+    // //console.log('inside submit handler');
+    // console.log(fd);
+    // const urlImage = 'http://localhost:8080/upload'
+    // axios.post(urlImage, fd).then(res => console.log(res))
 
 
-    const url = 'http://localhost:8080/crud/addProduct'
+    const url = 'https://localhost:44370/api/products/Postproduct'
     const requestOptions =
     {
       method: 'POST',

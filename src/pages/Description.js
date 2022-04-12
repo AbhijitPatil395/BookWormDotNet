@@ -21,19 +21,19 @@ export function Description(props)
     const { id } = useParams()
     const navigate=useNavigate();
     useEffect(() => {
-        fetch("http://localhost:8080/crud/search/" + id)
+        fetch("https://localhost:44370/api/products/Getproduct/" + id)
             .then(res => res.json())
             .then((result) => { setProduct(result); 
                     discCalc(result);
-                    setRent(result.isRentable);
+                    setRent(result.is_rentable);
             }
             );
     }, []);
 
     const discCalc=(result)=>{
-        let d1=new Date(result.productOfferpriceExpirydate);
-        let sp=result.productSpCost;
-        let ofp=result.productOfferprice;
+        let d1=new Date(result.product_offerprice_expirydate);
+        let sp=result.product_sp_cost;
+        let ofp=result.product_offerprice;
         let d2=Date.now();
         if(d1-d2>=0)
         {
@@ -61,7 +61,7 @@ export function Description(props)
         setRentDays(event.target.value);
         console.log(event.target.value)
         console.log("days:"+rentdays);
-        setRentAmt((event.target.value)*Product.productBasePricePerDay);
+        setRentAmt((event.target.value)*Product.product_baseprice_perday);
     }
 
     const rentHandler=(id)=>
@@ -71,8 +71,8 @@ export function Description(props)
             sessionStorage.setItem("tran_type","true");
             sessionStorage.setItem("rend_days",rentdays);
             sessionStorage.setItem("rent_amt",rentAmt);
-            const cart={'productId':id,'userId':uid,'isSelected':'Y'}
-            const url="http://localhost:8080/crud/buyDirect"
+            const cart={'product_id':id,'user_id':uid,'is_selected':'Y'}
+            const url="https://localhost:44370/api/carts/Postdirectbuy"
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -104,9 +104,10 @@ export function Description(props)
     {
         if(isLoggedIn)
         {
+            alert("buy handler")
             sessionStorage.setItem("tran_type","false");
-            const cart={'productId':id,'userId':uid,'isSelected':'Y'}
-            const url="http://localhost:8080/crud/buyDirect"
+            const cart={'product_id':id,'user_id':uid,'is_selected':'Y'}
+            const url="https://localhost:44370/api/carts/Postdirectbuy"
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -140,8 +141,8 @@ export function Description(props)
     {
         if(isLoggedIn)
         {
-            const cart={'productId':id,'userId':uid,'isSelected':'N'}
-            const url="http://localhost:8080/crud/addtocart"
+            const cart={'product_id':id,'user_id':uid,'is_selected':'N'}
+            const url="https://localhost:44370/api/carts/Postcart"
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -169,41 +170,41 @@ export function Description(props)
     
     <div className="card">
         <div className="card-body">
-            <h2 className="card-title">{Product.productName}</h2>
+            <h2 className="card-title">{Product.product_name}</h2>
             <div className="row">
                 <div className="col-lg-5 col-md-5 col-sm-6">
-                    <div className="white-box text-center"><img height="320px" width="240px" src={"../images/"+Product.productImage} className="img-responsive"/></div>
+                    <div className="white-box text-center"><img height="320px" width="240px" src={"../images/"+Product.product_image} className="img-responsive"/></div>
                 </div>
                 
                 <div className="col-lg-7 col-md-7 col-sm-6">
                     <h4 className="box-title mt-5">Product description</h4>
-                    <p>{Product.productDescLong}</p>
-                    {date_diff_indays(new Date().toDateString(),Product.productOfferpriceExpirydate)>0?
+                    <p>{Product.product_desc_long}</p>
+                    {date_diff_indays(new Date().toDateString(),Product.product_offerprice_expirydate)>0?
                         <h3 className="mt-2">
-                       <del>Price  ₹ : {Product.productSpCost}</del>
+                       <del>Price  ₹ : {Product.product_sp_cost}</del>
                         </h3>
                     :""}
                    
                     <h2 className="mt-2">
                     ₹ :{showPrice}<small className="text-success">({disc}% off)</small>
                     </h2>
-                    {date_diff_indays(new Date().toDateString(),Product.productOfferpriceExpirydate)>0?<h4 className="mt-2">
-                        Offer will expire in {date_diff_indays(new Date().toDateString(),Product.productOfferpriceExpirydate)} days.
+                    {date_diff_indays(new Date().toDateString(),Product.product_offerprice_expirydate)>0?<h4 className="mt-2">
+                        Offer will expire in {date_diff_indays(new Date().toDateString(),Product.product_offerprice_expirydate)} days.
                     </h4>:<h4>Offer Not available</h4>}
                     
                      {/* <button className="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart">
                         <i className="fa fa-shopping-cart"></i>
                     </button>  */}
-                    <button className="btn btn-primary btn-rounded" onClick={()=>{submitHandler(Product.productId)}}>Add to Cart </button>
+                    <button className="btn btn-primary btn-rounded" onClick={()=>{submitHandler(Product.product_id)}}>Add to Cart </button>
                     
-                    <button className="btn btn-primary btn-rounded" onClick={()=>{buyhandler(Product.productId)}}>Buy Now</button>
+                    <button className="btn btn-primary btn-rounded" onClick={()=>{buyhandler(Product.product_id)}}>Buy Now</button>
                     
                     
-                    {(Product.isRentable)?
-                    (<><br/><br/><h4>Rent Price per day: ₹ {Product.productBasePricePerDay} 
+                    {(Product.is_rentable)?
+                    (<><br/><br/><h4>Rent Price per day: ₹ {Product.product_baseprice_perday} 
                     </h4><h4>Rent amount:{rentAmt}</h4>
                     <input name="no_days" onChange={handleChange} type="number"/>
-                    <button className="btn btn-primary btn-rounded" onClick={()=>{rentHandler(Product.productId)}}>Rent</button><br/></>)
+                    <button className="btn btn-primary btn-rounded" onClick={()=>{rentHandler(Product.product_id)}}>Rent</button><br/></>)
                      :("")}
 
 
@@ -223,39 +224,39 @@ export function Description(props)
                             <tbody>
                                 <tr>
                                     <td width="390">Book English Name :</td>
-                                    <td>{Product.productEnglishName}</td>
+                                    <td>{Product.product_english_name}</td>
                                 </tr>
                                 <tr>
                                     <td>Selling Price :</td>
-                                    <td>{Product.productSpCost}</td>
+                                    <td>{Product.product_sp_cost}</td>
                                 </tr>
                                 <tr>
                                     <td>Offer Price :</td>
-                                    <td>{Product.productOfferprice}</td>
+                                    <td>{Product.product_offerprice}</td>
                                 </tr>
                                 <tr>
                                     <td>Offer Price Expiry Date :</td>
-                                    <td>{new Date(Product.productOfferpriceExpirydate).toDateString()}</td>
+                                    <td>{new Date(Product.product_offerprice_expirydate).toDateString()}</td>
                                 </tr>
                                 <tr>
                                     <td>Product Description Short :</td>
-                                    <td>{Product.productDescShort}</td>
+                                    <td>{Product.product_desc_short}</td>
                                 </tr>
                                 <tr>
                                     <td>Product ISBN :</td>
-                                    <td>{Product.productIsbn}</td>
+                                    <td>{Product.product_isbn}</td>
                                 </tr>
                                 <tr>
                                     <td>Product Author ID :</td>
-                                    <td>{Product.productAuthorId}</td>
+                                    <td>{Product.product_author_id}</td>
                                 </tr>
                                 <tr>
                                     <td>Product Publisher</td>
-                                    <td>{Product.productPublisher}</td>
+                                    <td>{Product.product_publisher}</td>
                                 </tr>
                                 <tr>
                                     <td>Product Language</td>
-                                    <td>{Product.productLanguage}</td>
+                                    <td>{Product.product_language}</td>
                                 </tr>
                                
 
@@ -288,6 +289,7 @@ export function Description(props)
         
 </div>
 </div>
+
 </>
             
 

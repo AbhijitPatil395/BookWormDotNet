@@ -6,7 +6,7 @@ import Navigationbar from "./Navigationbar";
 function Home() 
 {
     const roleId=sessionStorage.getItem("RoleId");
-    const uid=sessionStorage.getItem("UserId");
+    const uid=sessionStorage.getItem("BenId");
     return (
         <><Navigationbar/>
         <Container fluid>

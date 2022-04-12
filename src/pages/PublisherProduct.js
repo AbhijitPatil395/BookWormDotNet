@@ -12,7 +12,7 @@ function PublisherProduct(props) {
     const [PProduct, setPProduct] = useState([]);
     const { Id } = useParams()
     useEffect(() => {
-        fetch("http://localhost:8080/crud/publisherproduct/" + Id)
+        fetch("https://localhost:44370/api/products/Getproductbypub/" + Id)
             .then(res => res.json())
             .then((result) => { setPublisherProduct(result); setPProduct(result); }
             );
@@ -74,15 +74,15 @@ function PublisherProduct(props) {
                 { PublisherProduct.map(
                    Product => (
                     <div className="data-row og-row og-li Experienced Engineering 7.3 ready_to_hire Andhra Pradesh Yes">
-                        <div className="og-li-col og-li-col-1 text-center"><span>{Product.productId}</span></div>
-                        <div className="og-li-col og-li-col-2"><span>{Product.productName}</span></div>
-                        <div className="og-li-col og-li-col-3 text-center"><span>{Product.productBaseprice}</span></div>
-                        <div className="og-li-col og-li-col-5 text-center"><span>{Product.productSpCost}</span></div>
-                        <div className="og-li-col og-li-col-6 text-center"><span>{Product.productOfferprice}</span></div>
-                        <div className="og-li-col og-li-col-7 text-center"><span>{new Date(Product.productOfferpriceExpirydate).toUTCString()}</span></div>
+                        <div className="og-li-col og-li-col-1 text-center"><span>{Product.product_id}</span></div>
+                        <div className="og-li-col og-li-col-2"><span>{Product.product_name}</span></div>
+                        <div className="og-li-col og-li-col-3 text-center"><span>{Product.product_baseprice}</span></div>
+                        <div className="og-li-col og-li-col-5 text-center"><span>{Product.product_sp_cost}</span></div>
+                        <div className="og-li-col og-li-col-6 text-center"><span>{Product.product_offerprice}</span></div>
+                        <div className="og-li-col og-li-col-7 text-center"><span>{new Date(Product.product_offerprice_expirydate).toUTCString()}</span></div>
                         <div className="og-li-col og-li-col-9 text-center"><span>
-                            <a class="btn btn-primary" href={'/Edit/'+Product.productId} role="button">Edit</a>&nbsp;&nbsp;&nbsp;
-                            <a class="btn btn-primary" href={'/Beneficiary/'+Product.productId} role="button">Add beneficiary</a>
+                            <a class="btn btn-primary" href={'/Edit/'+Product.product_id} role="button">Edit</a>&nbsp;&nbsp;&nbsp;
+                            <a class="btn btn-primary" href={'/Beneficiary/'+Product.product_id} role="button">Add beneficiary</a>
                            {/*  <button type="button" class="btn btn-danger" onClick={letsdelete}>Delete</button> */}
                             </span></div>
                         {/* <button style = {{color:'red'}} onClick={()=>letsEdit(Product.productId)} ></button> */}

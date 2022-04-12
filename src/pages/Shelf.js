@@ -45,9 +45,9 @@ var date_diff_indays = function(date1, date2) {
     {
       console.log('inside');
       if (mode==='purchase') {
-        setFdata(data.filter((elem)=>elem.tran_type==="p"));}
+        setFdata(data.filter((elem)=>elem.tran_type.toLowerCase()==="p"));}
       else if (mode==='rent') {
-        setFdata(data.filter((elem)=>elem.tran_type==="r"));
+        setFdata(data.filter((elem)=>elem.tran_type.toLowerCase()==="r"));
       }
       else{
         setFdata(data.filter((elem)=>elem.tran_type==="l"));

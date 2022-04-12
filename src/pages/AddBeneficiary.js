@@ -189,8 +189,4 @@ function AddBeneficiary() {
   );
 }
 
-
-
-
-
 export default AddBeneficiary;

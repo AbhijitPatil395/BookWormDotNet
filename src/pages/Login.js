@@ -66,6 +66,7 @@ function Login() {
           }
           if (user.role_id == 2)
             {
+              //alert(user.Ben_user_name+" "+user.Ben_password)
               url = "https://localhost:44370/api/publishers/PostLogin";
               const requestOptions =
               {
@@ -78,11 +79,13 @@ function Login() {
               .then(res=>res.json())
               .then((result)=>{
                 setCustomer(result)
+                //alert(result.Ben_user_name+" after")
                 if(result)
                 {
-              sessionStorage.setItem("Name", result[1].Ben_name);
-              sessionStorage.setItem("UserId",  result[1].Ben_user_name);
-              sessionStorage.setItem("BenId",  result[1].Ben_id);
+
+              sessionStorage.setItem("Name", result[0].Ben_name);
+              sessionStorage.setItem("UserId",  result[0].Ben_user_name);
+              sessionStorage.setItem("BenId",  result[0].Ben_id);
               sessionStorage.setItem("RoleId",  2);
               sessionStorage.setItem("IsLoggedIn",true);
               
