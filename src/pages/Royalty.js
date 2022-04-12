@@ -14,9 +14,9 @@ function Royalty(props) {
     const [PublisherProduct, setPublisherProduct] = useState([]);
     const [PProduct, setPProduct] = useState([]);
     const { Id } = useParams()
-    const benId=sessionStorage.getItem("UserId");
+    const benId=sessionStorage.getItem("BenId");
     useEffect(() => {
-        fetch("http://localhost:8080/Royalty/getbRoyalty/"+benId)
+        fetch("https://localhost:44370/api/Royalty_Calculation/GetPubRoyalty/"+benId)
             .then(res => res.json())
             .then((result) => { setPublisherProduct(result); setPProduct(result);
             console.log(result[0])}
@@ -24,17 +24,17 @@ function Royalty(props) {
             
     }, []);
     
-
+//hff
     const isRentable=(event)=>
     {
         if(event.target.value==1){
-        fetch("http://localhost:8080/Royalty/getbRoyaltyRent/" +benId )
+        fetch("https://localhost:44370/api/Royalty_Calculation/GetPubRoyaltyByTran/" +benId )
             .then(res => res.json())
             .then((result) => { setPublisherProduct(result); setPProduct(result); }
             );
         }
         else{
-            fetch("http://localhost:8080/Royalty/getbRoyalty/"+benId)
+            fetch("https://localhost:44370/api/Royalty_Calculation/GetPubRoyalty/"+benId)
             .then(res => res.json())
             .then((result) => { setPublisherProduct(result); setPProduct(result);
             console.log(result[0])}
@@ -101,10 +101,10 @@ function Royalty(props) {
         { PublisherProduct.map(
             Product => (
              <div className="data-row og-row og-li Experienced Engineering 7.3 ready_to_hire Andhra Pradesh Yes">
-                 <div className="og-li-col og-li-col-7 "><span>{Product[0]}</span></div>
-                  <div className="og-li-col og-li-col-2 text-center"><span>{Product[4]  }</span></div> 
+                 <div className="og-li-col og-li-col-7 "><span>{Product.product_name}</span></div>
+                  <div className="og-li-col og-li-col-2 text-center"><span>{Product.roycal_qty}</span></div> 
                
-                 <div className="og-li-col og-li-col-3   text-center"><span>{Product[3]}</span></div>
+                 <div className="og-li-col og-li-col-3   text-center"><span>{Product.RoyaltyOnBasePrice}</span></div>
               
                  {/* <div className="og-li-col og-li-col-7 text-center"><span>{new Date(Product.productOfferpriceExpirydate).toUTCString()}</span></div>
                  <div className="og-li-col og-li-col-7 text-center"><span><a class="btn btn-primary" href={'/Edit/'+Product.productId} role="button">Edit</a><button type="button" class="btn btn-danger" >Delete</button></span></div> */}

@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
- 
+ //ghf
 
 
 
@@ -33,7 +33,7 @@ function Login() {
             var url;
             if (user.role_id == 1)
             {
-              url = "https://localhost:44378/api/user_master/PostLogin"
+              url = "https://localhost:44370/api/user_master/PostLogin"
               const requestOptions =
               {
                 method: 'POST',
@@ -66,7 +66,7 @@ function Login() {
           }
           if (user.role_id == 2)
             {
-              url = "https://localhost:44378/api/publishers/PostLogin";
+              url = "https://localhost:44370/api/publishers/PostLogin";
               const requestOptions =
               {
                 method: 'POST',
@@ -82,6 +82,7 @@ function Login() {
                 {
               sessionStorage.setItem("Name", result[1].Ben_name);
               sessionStorage.setItem("UserId",  result[1].Ben_user_name);
+              sessionStorage.setItem("BenId",  result[1].Ben_id);
               sessionStorage.setItem("RoleId",  2);
               sessionStorage.setItem("IsLoggedIn",true);
               
