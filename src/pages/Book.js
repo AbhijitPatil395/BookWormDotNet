@@ -16,11 +16,11 @@ export default function Book({ d }) {
                     <Col xs={2} style={{ paddingBottom: "10px" }}>
                         <Card >
                             {/* <Card.Img variant="top" src={book.productImage+"/190px280"} /> */}
-                            <img src={"../images/" + book.product.productImage} width="170px" height="250px"></img>
+                            <img src={"../images/" + book.product.product_image} width="170px" height="250px"></img>
                             {/* keep image size horizontal 190 px */}
                             <Card.Body>
-                                <a href={"../images/" + book.product.productPdf}>
-                                    <Card.Title><b>{book.product.productName}</b></Card.Title>
+                                <a href={"../images/" + book.product.product_pdf}>
+                                    <Card.Title><b>{book.product.product_name}</b></Card.Title>
                                 </a>
                                 <Card.Text>
                                     {(book.tran_type == 'r') ? <h6 style={{ textAlign: "center" }}>Expiry: {book.product_ExpiryDate}</h6> : <h6>"Purchased"</h6>}
