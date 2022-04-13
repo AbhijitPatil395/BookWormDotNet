@@ -62,7 +62,7 @@ return(<><Navigationbar/>
   
     <select id="inputState" class="form-select"  onChange={changeHandler}>
     
-    
+    <option >Select Beneficiary</option>
     {benif.map(elem=>{
         return<option id={elem.Ben_id} value={elem.Ben_id}  >BenifID:{elem.Ben_id}  {elem.Ben_name}</option>
     }
