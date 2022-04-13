@@ -10,37 +10,41 @@ export function Invoice(props)
     const [product, setProduct] = useState([]);
     const [invoiceObj, setInvoiceObj] = useState({});
     const [count, setCount] = useState(0);
-    const [disc, setDisc] = useState(0);
+    const [disc, setDisc] = useState("");
     const [total, setTotal] = useState(0); 
     const [tot,setTot]=useState(0); 
     const [invId,setInvId]=useState(0); 
     const [invDt,setInvDt]=useState(0);
+    
    
     
     const [cartItems,setCartItems]=useState([]);
 
-   /*  const compDate=(expDate)=>
+    const compDate=(expDate)=>
     {
-        let d1=new Date(expDate);
-        let d2=Date.now();
-        if(d1-d2>=0)
-        return true;
-        else
-        return false;
+        let d1=expDate.toString();
+        // let d2=Date.now();
+        // if(d1-d2>=0)
+        // return true;
+        // else
+        // return false;
+        return d1.substring(0,10);
     }
-    const calDisc=(expDate,sp,ofp)=>
+    const calDisc=(disc)=>
     {
-        let d1=new Date(expDate);
-        let d2=Date.now();
-        if(d1-d2>=0)
-        {
-            let s=((sp-ofp)/sp*100).toString();
-            return s.substring(0,4)
+        // let d1=new Date(expDate);
+        // let d2=Date.now();
+        // if(d1-d2>=0)
+        // {
+        //     let s=((sp-ofp)/sp*100).toString();
+        //     return s.substring(0,4)
          
-        }
-        else
-        return "0";
-    } */
+        // }
+        // else
+        // return "0";
+        let s=disc.toString();
+        return s.substring(0,4)
+    } 
     useEffect(() => 
     {
         fetch("https://localhost:44370/api/invoice_detail/Getinvoice_detail/"+uid)
@@ -52,6 +56,7 @@ export function Invoice(props)
             setTot(result[0].invoice.Invoice_amount);
             setInvId(result[0].invoice.Invoice_Id);
             setInvDt(result[0].invoice.Invoice_date);
+            setDisc()
 
         });
 
@@ -76,7 +81,7 @@ export function Invoice(props)
             <table align="right">
                 <tbody>
                 <tr align="left"><td><b>Invoice Id </b></td><td>:{invId}</td></tr>
-                <tr align="left"><td><b>Invoice Date </b></td><td>:{invDt}</td></tr>
+                <tr align="left"><td><b>Invoice Date </b></td><td>:{compDate(invDt)} &emsp;&emsp;</td></tr>
                 <tr align="left"><td></td><td></td></tr>
                 </tbody>
             </table><br/><br/><br/>
@@ -102,7 +107,7 @@ export function Invoice(props)
                             <td>{prod.product.product_name}</td>
                             {(prod.Tran_Type=='R')?<td>{prod.Base_Price}</td>:<td>{prod.Sale_Price}</td>}
                             
-                            <td>{prod.discount}%</td>
+                            <td>{calDisc(prod.discount)}%</td>
                             <td>{prod.net_pay}</td>
                             {/* <td>{calDisc(prod[1].productOfferpriceExpirydate,prod[1].productSpCost,prod[1].productOfferprice)}%</td> */}
                            

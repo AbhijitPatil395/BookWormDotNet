@@ -3,7 +3,18 @@ import { Col, Container, Row, Button, Card, Alert } from "react-bootstrap";
 
 
 //  Mapping of purchased and rented books in Myshelf
-export default function Book({ d }) {
+export default function Book({ d }) 
+{
+    const compDate=(expDate)=>
+    {
+        let d1=expDate.toString();
+        // let d2=Date.now();
+        // if(d1-d2>=0)
+        // return true;
+        // else
+        // return false;
+        return d1.substring(0,10);
+    }
 
     return (
         <Container fluid>
@@ -21,13 +32,13 @@ export default function Book({ d }) {
                             <Card.Body>
                             <Card.Title>
                                 
-                            <img src={"../images/" + book.product.product_image} width="170px" height="250px"></img>
+                            <img src={"../images/" + book.product.product_image} width="150px" height="220px"></img>
                             </Card.Title>
                                 <a href={"../images/" + book.product.product_pdf}>
                                     <Card.Title><b>{book.product.product_name}</b></Card.Title>
                                 </a>
                                 <Card.Text>
-                                    {(book.tran_type == 'r') ? <h6 style={{ textAlign: "center" }}>Expiry: {book.product_ExpiryDate}</h6> : <h6>"Purchased"</h6>}
+                                    {(book.tran_type == 'r') ? <h6 style={{ textAlign: "center" }}>Expiry: {compDate(book.product_ExpiryDate)}</h6> : <h6>"Purchased"</h6>}
 
                                 </Card.Text>
                             </Card.Body>
